@@ -7,6 +7,9 @@ Dim strLine
 Dim newLine
 Dim quotePos
 Dim hasLink
+header1 = "Bugs"
+header2 = "Project Specific"
+header3 = "Generic"
 
 If args.Count = 0 Then
 	WScript.echo "*** Give a source .txt file name without the suffix and try again ***"
@@ -31,13 +34,13 @@ Function loopFile()
 	If InStr(1, strLine, "h2", vbTextCompare) Then
 		newLine = Replace(strLine, "h2", "h3", 1)
 		If InStr(1, newLine, "Bug", vbTextCompare) Then
-			newLine = Replace(newLine, "Bug", "Bugs", 1)
+			newLine = Replace(newLine, "Bug", header1, 1)
 		End If
 		If InStr(1, newLine, "Epic", vbTextCompare) Then
-			newLine = Replace(newLine, "Epic", "Project Specific", 1)
+			newLine = Replace(newLine, "Epic", header2, 1)
 		End If
 		If InStr(1, newLine, "Story", vbTextCompare) Then
-			newLine = Replace(newLine, "Story", "Generic", 1)
+			newLine = Replace(newLine, "Story", header3, 1)
 		End If
 		If hasLink > 0 Then
 			newLine = Replace(newLine, "'", """", 1, 2)
