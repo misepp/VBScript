@@ -12,11 +12,11 @@ header2 = "Project Specific"
 header3 = "Generic"
 
 If args.Count = 0 Then
-	WScript.echo "*** Give a source .txt file name without the suffix and try again ***"
+	WScript.echo "*** Give a source text file name without any suffix and try again ***"
 	WScript.Quit
 End If
 
-Set objFile = objFSO.OpenTextFile(args.Item(0) + ".txt", ForReading)
+Set objFile = objFSO.OpenTextFile(args.Item(0), ForReading)
 Set objOutFile = objFSO.CreateTextFile("RESULT.txt",True)  
 
 Do Until objFile.AtEndOfStream
