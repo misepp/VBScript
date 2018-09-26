@@ -6,7 +6,6 @@ Set args = WScript.Arguments
 Dim strLine
 Dim newLine
 Dim quotePos
-Dim hPos
 Dim hasLink
 
 If args.Count = 0 Then
@@ -28,10 +27,18 @@ Function loopFile()
 	if hasLink > 0 Then
 		quotePos = InStr(1, strLine, "'", vbTextCompare)
 	End If
-		
-	hPos = InStr(1, strLine, "h2", vbTextCompare)
-	If hPos > 0 Then
+		 
+	If InStr(1, strLine, "h2", vbTextCompare) Then
 		newLine = Replace(strLine, "h2", "h3", 1)
+		If InStr(1, newLine, "Bug", vbTextCompare) Then
+			newLine = Replace(newLine, "Bug", "Bugs", 1)
+		End If
+		If InStr(1, newLine, "Epic", vbTextCompare) Then
+			newLine = Replace(newLine, "Epic", "Project Specific", 1)
+		End If
+		If InStr(1, newLine, "Story", vbTextCompare) Then
+			newLine = Replace(newLine, "Story", "Generic", 1)
+		End If
 		If hasLink > 0 Then
 			newLine = Replace(newLine, "'", """", 1, 2)
 			objOutFile.WriteLine(newLine)
