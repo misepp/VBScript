@@ -29,16 +29,16 @@ Function loopFile()
 		quotePos = InStr(1, strLine, "'", vbTextCompare)
 	End If
 		
-	hPos = InStr(1, strLine, "h3", vbTextCompare)
+	hPos = InStr(1, strLine, "h2", vbTextCompare)
 	If hPos > 0 Then
-		newLine = Replace(strLine, "h3", "h2", 1)
+		newLine = Replace(strLine, "h2", "h3", 1)
 		If hasLink > 0 Then
 			newLine = Replace(newLine, "'", """", 1, 2)
 			objOutFile.WriteLine(newLine)
 			Exit Function
 		End If
 		objOutFile.WriteLine(newLine)
-	ElseIf hasLink Then
+	ElseIf hasLink > 0 Then
 		If quotePos > 0 Then
 			newLine = Replace(strLine, "'", """", 1, 2)
 			objOutFile.WriteLine(newLine)
